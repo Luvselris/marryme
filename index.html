@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>how to pay marryme ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- QRCode.js Library สำหรับสร้าง QR Code แบบ Dynamic -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    :root {
+      --bg-cream: #fff9fa;
+      --card-bg: rgba(255, 255, 255, 0.94);
+      --pastel-pink: #ffb6c1;
+      --soft-pink: #ffe4e9;
+      --deep-pink: #f0728f;
+      --line-pink: #ffd1dc;
+      --text-main: #4a3b3e;
+      --text-muted: #917c80;
+      --glow-pink: rgba(240, 114, 143, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', 'Mitr', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      padding: 24px 14px 60px;
+      position: relative;
+      background: radial-gradient(circle at top, #fff0f3 0%, #ffe6eb 50%, #ffd8e0 100%);
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 390px;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* 1. ส่วนหัว Header */
+    .header-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border-radius: 28px;
+      padding: 12px 12px 20px;
+      text-align: center;
+      border: 2px solid #ffffff;
+      box-shadow: 0 10px 26px var(--glow-pink);
+    }
+
+    .banner-container {
+      width: 100%;
+      height: 140px;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #ffeef2;
+    }
+
+    .banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-wrap {
+      position: relative;
+      margin-top: -46px;
+      display: inline-block;
+    }
+
+    .profile-img {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #ffffff;
+      box-shadow: 0 6px 18px rgba(240, 114, 143, 0.25);
+      background: #ffffff;
+    }
+
+    .page-title {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--deep-pink);
+      letter-spacing: 0.3px;
+      margin-top: 8px;
+    }
+
+    .music-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      background: #ffffff;
+      border: 1.5px solid var(--line-pink);
+      color: var(--deep-pink);
+      padding: 5px 16px;
+      border-radius: 20px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255, 182, 193, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .music-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* 2. กล่องบัญชีและการเงิน */
+    .account-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 22px;
+      padding: 14px 16px;
+      border: 2px solid #ffffff;
+      box-shadow: 0 6px 20px var(--glow-pink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .account-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      background: var(--pastel-pink);
+    }
+
+    .acc-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .acc-bank-name {
+      font-size: 12.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--deep-pink);
+    }
+
+    .acc-number {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: #3d2c2f;
+      letter-spacing: 0.6px;
+    }
+
+    .acc-owner {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .copy-btn {
+      background: #ffffff;
+      border: 1.5px solid var(--line-pink);
+      color: var(--deep-pink);
+      padding: 6px 14px;
+      border-radius: 16px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 2px 8px rgba(255, 182, 193, 0.3);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .copy-btn:active {
+      transform: scale(0.92);
+      background: var(--soft-pink);
+    }
+
+    /* 3. กล่องคำอธิบาย Note Slip */
+    .note-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      padding: 18px 16px;
+      border: 2px dashed var(--pastel-pink);
+      box-shadow: 0 6px 20px var(--glow-pink);
+      text-align: center;
+      line-height: 1.7;
+      font-size: 13px;
+      color: #4a383b;
+      white-space: pre-line;
+    }
+
+    /* 4. กล่องแยกข้อความโน้ตสลิป */
+    .slip-text-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 14px 16px;
+      border: 2px solid #ffffff;
+      box-shadow: 0 6px 18px var(--glow-pink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .slip-text-label {
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    .slip-text-content {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--deep-pink);
+      letter-spacing: 0.3px;
+    }
+
+    /* 5. กล่อง Payment QR Code */
+    .qr-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border-radius: 28px;
+      padding: 20px 18px;
+      border: 2px solid #ffffff;
+      box-shadow: 0 10px 28px var(--glow-pink);
+      text-align: center;
+    }
+
+    .qr-title {
+      font-weight: 700;
+      color: var(--deep-pink);
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+
+    .qr-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .amount-display-box {
+      background: #ffffff;
+      border: 1.5px solid var(--line-pink);
+      border-radius: 20px;
+      padding: 8px 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .amount-input {
+      width: 150px;
+      border: none;
+      outline: none;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--deep-pink);
+      text-align: center;
+      background: transparent;
+    }
+
+    .amount-unit {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .quick-amounts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .quick-btn {
+      background: #ffffff;
+      border: 1.5px solid var(--line-pink);
+      color: var(--deep-pink);
+      padding: 7px 0;
+      border-radius: 14px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(255, 182, 193, 0.2);
+      transition: all 0.15s ease;
+    }
+
+    .quick-btn:active {
+      transform: scale(0.95);
+      background: var(--deep-pink);
+      color: #ffffff;
+    }
+
+    .bottom-quick-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .btn-clear {
+      background: #fff0f3;
+      border: 1.5px solid var(--line-pink);
+      color: var(--text-muted);
+      padding: 7px 0;
+      border-radius: 14px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .qr-container {
+      background: #ffffff;
+      border: 1.5px solid var(--line-pink);
+      border-radius: 22px;
+      padding: 16px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 18px rgba(240, 114, 143, 0.15);
+      margin-bottom: 12px;
+    }
+
+    #qrcode {
+      display: flex;
+      justify-content: center;
+    }
+
+    #qrcode img {
+      border-radius: 8px;
+    }
+
+    .qr-info-note {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Footer Badge */
+    .footer-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1.5px solid var(--line-pink);
+      border-radius: 20px;
+      padding: 6px 18px;
+      margin: 8px auto 0;
+      font-size: 11.5px;
+      color: var(--deep-pink);
+      font-weight: 600;
+    }
+
+    /* Toast แจ้งเตือนเมื่อคัดลอก */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: rgba(74, 59, 62, 0.92);
+      backdrop-filter: blur(8px);
+      color: #ffffff;
+      padding: 9px 20px;
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 500;
+      pointer-events: none;
+      transition: transform 0.25s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+      z-index: 9999;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ตัวเล่นเพลงพื้นหลัง -->
+  <audio id="bgMusic" loop autoplay playsinline preload="auto" src="https://d.uguu.se/JMOxdyUk.mp3"></audio>
+
+  <div class="wrapper">
+
+    <!-- 1. Header Card (Banner + Profile) -->
+    <div class="header-card">
+      <div class="banner-container">
+        <img src="https://i.ibb.co/hRnYBqTR/line-oa-chat-261003-221517.jpg" alt="Banner" class="banner-img">
+      </div>
+      <div class="profile-wrap">
+        <img src="https://i.ibb.co/zWGhKK93/line-oa-chat-261003-221515.jpg" alt="Profile" class="profile-img">
+      </div>
+      <div class="page-title">how to pay marryme ♡</div>
+      <button type="button" class="music-btn" id="musicToggleBtn" onclick="toggleMusic()">
+        <span id="musicIcon">▶</span> <span id="musicText">play music !</span>
+      </button>
+    </div>
+
+    <!-- 2. ธนาคารกสิกรไทย -->
+    <div class="account-card">
+      <div class="acc-details">
+        <div class="acc-bank-name">🏛️ ธนาคารกสิกรไทย</div>
+        <div class="acc-number">048-3-38787-3</div>
+        <div class="acc-owner">ธนาคารกสิกรไทย</div>
+      </div>
+      <button type="button" class="copy-btn" onclick="copyText('0483387873', 'คัดลอกเลขบัญชีกสิกรไทยแล้วค่ะ ♡')">
+        📋 คัดลอก
+      </button>
+    </div>
+
+    <!-- 3. TrueMoney Wallet -->
+    <div class="account-card">
+      <div class="acc-details">
+        <div class="acc-bank-name">📱 TrueMoney Wallet</div>
+        <div class="acc-number">091-030-6243</div>
+        <div class="acc-owner">ทรูมันนี่ วอลเล็ท</div>
+      </div>
+      <button type="button" class="copy-btn" onclick="copyText('0910306243', 'คัดลอกเบอร์ TrueMoney Wallet แล้วค่ะ ♡')">
+        📋 คัดลอก
+      </button>
+    </div>
+
+    <!-- 4. กล่องคำอธิบาย Note Slip -->
+    <div class="note-card">
+note slip ก่อนโอน ❀ ྀི♡݁𓈒ׅ 
+
+      𓈒.        ” ใช้บริการร้าน marryme “ 𐙚 ⊹
+⠀             ⠀⠀⠀֯⠀⠀⠀⠀⠀ ┊⠀⠀⠀ ּ  ⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   𐅛 ⠀
+     ֯♡ 𓂂༷ ⠀ ִ          หากลืมโน้ต  ⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀รบกวนโอนใหม่ ยอด 0.1
+    </div>
+
+    <!-- 5. กล่องแยกข้อความโน้ตสลิป (กดคัดลอกได้ทันที) -->
+    <div class="slip-text-card">
+      <div>
+        <div class="slip-text-label">ข้อความสำหรับโน้ตสลิป 💌</div>
+        <div class="slip-text-content">ใช้บริการร้าน marryme</div>
+      </div>
+      <button type="button" class="copy-btn" onclick="copyText('ใช้บริการร้าน marryme', 'คัดลอกข้อความโน้ตสลิปแล้วค่ะ ♡')">
+        📋 คัดลอก
+      </button>
+    </div>
+
+    <!-- 6. Payment QR Code ตามยอดเงิน -->
+    <div class="qr-card">
+      <div class="qr-title">💳 Payment QR Code</div>
+      <div class="qr-sub">กรอกยอดเงินที่ต้องการชำระ (บาท)</div>
+
+      <div class="amount-display-box">
+        <input type="number" id="amountInput" class="amount-input" placeholder="0.00" step="any" min="0" oninput="updateQRCode()">
+        <span class="amount-unit">บาท</span>
+      </div>
+
+      <div class="quick-amounts">
+        <button type="button" class="quick-btn" onclick="addAmount(50)">+50</button>
+        <button type="button" class="quick-btn" onclick="addAmount(100)">+100</button>
+        <button type="button" class="quick-btn" onclick="addAmount(300)">+300</button>
+        <button type="button" class="quick-btn" onclick="addAmount(500)">+500</button>
+      </div>
+
+      <div class="bottom-quick-row">
+        <button type="button" class="quick-btn" onclick="addAmount(1000)">+1000</button>
+        <button type="button" class="btn-clear" onclick="clearAmount()">ล้าง</button>
+      </div>
+
+      <div class="qr-container">
+        <div id="qrcode"></div>
+      </div>
+
+      <div class="qr-info-note">
+        สแกนจ่ายผ่านแอปธนาคาร / วอลเล็ตได้ทันที<br>
+        (พร้อมเพย์เบอร์ 091-030-6243)
+      </div>
+    </div>
+
+    <div style="text-align: center;">
+      <div class="footer-badge">🌸 how to pay marryme ♡</div>
+    </div>
+
+  </div>
+
+  <!-- Toast แจ้งเตือนเมื่อกดคัดลอก -->
+  <div class="toast" id="toastBox">คัดลอกเรียบร้อยแล้วค่ะ ♡</div>
+
+  <script>
+    // 1. ระบบเพลงพื้นหลัง + ปลดล็อกเสียงเมื่อสัมผัสหน้าจอ
+    const music = document.getElementById('bgMusic');
+    const musicIcon = document.getElementById('musicIcon');
+    const musicText = document.getElementById('musicText');
+
+    function updateAudioStatus(isPlaying) {
+      if (isPlaying) {
+        musicIcon.textContent = "❚❚";
+        musicText.textContent = "pause music";
+      } else {
+        musicIcon.textContent = "▶";
+        musicText.textContent = "play music !";
+      }
+    }
+
+    function toggleMusic() {
+      if (music.paused) {
+        music.play().then(() => updateAudioStatus(true)).catch(() => {});
+      } else {
+        music.pause();
+        updateAudioStatus(false);
+      }
+    }
+
+    function initAutoplay() {
+      music.play().then(() => {
+        updateAudioStatus(true);
+      }).catch(() => {
+        updateAudioStatus(false);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initAutoplay();
+      ['touchstart', 'click'].forEach(evt => {
+        document.body.addEventListener(evt, () => {
+          if (music.paused && musicText.textContent === "play music !") {
+            music.play().then(() => updateAudioStatus(true)).catch(() => {});
+          }
+        }, { once: true, passive: true });
+      });
+    });
+
+    // 2. ระบบคัดลอกข้อความ
+    function copyText(text, msg) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text);
+      } else {
+        const temp = document.createElement("input");
+        temp.value = text;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand("copy");
+        document.body.removeChild(temp);
+      }
+      showToast(msg);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastBox');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2000);
+    }
+
+    // 3. ระบบ PromptPay QR Code EMVCo (เบอร์ 0910306243)
+    const PROMPTPAY_PHONE = "0910306243";
+
+    function crc16(data) {
+      let crc = 0xFFFF;
+      for (let i = 0; i < data.length; i++) {
+        crc ^= data.charCodeAt(i) << 8;
+        for (let j = 0; j < 8; j++) {
+          if ((crc & 0x8000) !== 0) {
+            crc = ((crc << 1) ^ 0x1021) & 0xFFFF;
+          } else {
+            crc = (crc << 1) & 0xFFFF;
+          }
+        }
+      }
+      return crc.toString(16).toUpperCase().padStart(4, '0');
+    }
+
+    function formatField(id, val) {
+      const len = val.length.toString().padStart(2, '0');
+      return id + len + val;
+    }
+
+    function generatePromptPayPayload(phone, amount) {
+      let target = phone.replace(/[^0-9]/g, '');
+      if (target.startsWith('0')) {
+        target = '0066' + target.substring(1);
+      }
+      const formattedTarget = formatField('01', target);
+      const merchantSub = formatField('00', 'A000000677010111') + formattedTarget;
+      const merchantInfo = formatField('29', merchantSub);
+
+      let payload = 
+        formatField('00', '01') + 
+        formatField('01', amount > 0 ? '12' : '11') + 
+        merchantInfo + 
+        formatField('53', '764') + 
+        formatField('58', 'TH');
+
+      if (amount > 0) {
+        payload += formatField('54', amount.toFixed(2));
+      }
+
+      payload += '6304';
+      const checksum = crc16(payload);
+      return payload + checksum;
+    }
+
+    function renderQR(text) {
+      const qrElement = document.getElementById("qrcode");
+      qrElement.innerHTML = "";
+      new QRCode(qrElement, {
+        text: text,
+        width: 175,
+        height: 175,
+        colorDark: "#3d2c2f",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.M
+      });
+    }
+
+    function updateQRCode() {
+      const input = document.getElementById('amountInput');
+      let val = parseFloat(input.value);
+      if (isNaN(val) || val <= 0) {
+        val = 0;
+      }
+      const payload = generatePromptPayPayload(PROMPTPAY_PHONE, val);
+      renderQR(payload);
+    }
+
+    function addAmount(num) {
+      const input = document.getElementById('amountInput');
+      let current = parseFloat(input.value) || 0;
+      input.value = (current + num).toFixed(2);
+      updateQRCode();
+    }
+
+    function clearAmount() {
+      const input = document.getElementById('amountInput');
+      input.value = '';
+      updateQRCode();
+    }
+
+    window.addEventListener('load', () => {
+      updateQRCode();
+    });
+  </script>
+</body>
+</html>
