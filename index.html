@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <!-- ป้องกัน iPhone / Safari เปลี่ยนตัวเลขเป็นสีน้ำเงิน -->
+  <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
   <title>how to pay marryme ♡</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,10 +16,11 @@
   <style>
     :root {
       --bg-cream: #fff9fa;
-      --card-bg: rgba(255, 255, 255, 0.94);
+      --card-bg: rgba(255, 255, 255, 0.95);
       --pastel-pink: #ffb6c1;
       --soft-pink: #ffe4e9;
       --deep-pink: #f0728f;
+      --number-pink: #e05d7f; /* สีชมพูคุมโทนสำหรับตัวเลข */
       --line-pink: #ffd1dc;
       --text-main: #4a3b3e;
       --text-muted: #917c80;
@@ -30,6 +33,16 @@
       padding: 0;
       font-family: 'Quicksand', 'Mitr', sans-serif;
       -webkit-tap-highlight-color: transparent;
+    }
+
+    /* บังคับไม่ให้ Safari แสดงลิงก์สีน้ำเงินที่ตัวเลข */
+    a[href^="tel"], span[x-apple-data-detectors] {
+      color: inherit !important;
+      text-decoration: none !important;
+      font-size: inherit !important;
+      font-family: inherit !important;
+      font-weight: inherit !important;
+      line-height: inherit !important;
     }
 
     body {
@@ -163,10 +176,11 @@
     }
 
     .acc-number {
-      font-size: 16.5px;
+      font-size: 17px;
       font-weight: 700;
-      color: #3d2c2f;
-      letter-spacing: 0.6px;
+      color: var(--number-pink) !important; /* บังคับเป็นสีชมพู */
+      letter-spacing: 0.8px;
+      text-decoration: none !important;
     }
 
     .acc-owner {
@@ -362,6 +376,12 @@
       line-height: 1.6;
     }
 
+    .qr-target-phone {
+      color: var(--number-pink) !important;
+      font-weight: 700;
+      text-decoration: none !important;
+    }
+
     /* Footer Badge */
     .footer-badge {
       display: inline-flex;
@@ -426,7 +446,7 @@
     <!-- 2. ธนาคารกสิกรไทย -->
     <div class="account-card">
       <div class="acc-details">
-        <div class="acc-bank-name">🏛️ ธนาคารกสิกรไทย</div>
+        <div class="acc-bank-name">ธนาคารกสิกรไทย</div>
         <div class="acc-number">048-3-38787-3</div>
         <div class="acc-owner">ธนาคารกสิกรไทย</div>
       </div>
@@ -438,7 +458,7 @@
     <!-- 3. TrueMoney Wallet -->
     <div class="account-card">
       <div class="acc-details">
-        <div class="acc-bank-name">📱 TrueMoney Wallet</div>
+        <div class="acc-bank-name">TrueMoney Wallet</div>
         <div class="acc-number">091-030-6243</div>
         <div class="acc-owner">ทรูมันนี่ วอลเล็ท</div>
       </div>
@@ -497,7 +517,7 @@ note slip ก่อนโอน ❀ ྀི♡݁𓈒ׅ
 
       <div class="qr-info-note">
         สแกนจ่ายผ่านแอปธนาคาร / วอลเล็ตได้ทันที<br>
-        (พร้อมเพย์เบอร์ 091-030-6243)
+        (พร้อมเพย์เบอร์ <span class="qr-target-phone">091-030-6243</span>)
       </div>
     </div>
 
