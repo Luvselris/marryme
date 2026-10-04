@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <!-- ป้องกัน iPhone / Safari เปลี่ยนตัวเลขเป็นสีน้ำเงิน -->
+  <!-- ป้องกัน Safari เปลี่ยนตัวเลขเป็นสีน้ำเงิน -->
   <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
   <title>how to pay marryme ♡</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,7 @@
       --pastel-pink: #ffb6c1;
       --soft-pink: #ffe4e9;
       --deep-pink: #f0728f;
-      --number-pink: #e05d7f; /* สีชมพูคุมโทนสำหรับตัวเลข */
+      --number-pink: #e05d7f;
       --line-pink: #ffd1dc;
       --text-main: #4a3b3e;
       --text-muted: #917c80;
@@ -35,7 +35,6 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* บังคับไม่ให้ Safari แสดงลิงก์สีน้ำเงินที่ตัวเลข */
     a[href^="tel"], span[x-apple-data-detectors] {
       color: inherit !important;
       text-decoration: none !important;
@@ -65,7 +64,7 @@
       gap: 12px;
     }
 
-    /* 1. ส่วนหัว Header */
+    /* 1. Header Card */
     .header-card {
       background: var(--card-bg);
       backdrop-filter: blur(14px);
@@ -135,6 +134,37 @@
       transform: scale(0.96);
     }
 
+    /* กล่องชื่อบัญชี (อยู่ตรงกลาง ไม่มีปุ่มคัดลอก) */
+    .owner-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 22px;
+      padding: 14px 16px;
+      border: 2px solid #ffffff;
+      box-shadow: 0 6px 20px var(--glow-pink);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .owner-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--deep-pink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .owner-name {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--number-pink);
+      letter-spacing: 0.5px;
+      margin-top: 3px;
+    }
+
     /* 2. กล่องบัญชีและการเงิน */
     .account-card {
       background: var(--card-bg);
@@ -178,7 +208,7 @@
     .acc-number {
       font-size: 17px;
       font-weight: 700;
-      color: var(--number-pink) !important; /* บังคับเป็นสีชมพู */
+      color: var(--number-pink) !important;
       letter-spacing: 0.8px;
       text-decoration: none !important;
     }
@@ -443,10 +473,16 @@
       </button>
     </div>
 
+    <!-- กล่องชื่อบัญชี (จัดกึ่งกลาง ไม่มีปุ่มคัดลอก) -->
+    <div class="owner-card">
+      <div class="owner-title">👤 Account Name</div>
+      <div class="owner-name">ลลิตภัทร เอี่ยมพรสิน</div>
+    </div>
+
     <!-- 2. ธนาคารกสิกรไทย -->
     <div class="account-card">
       <div class="acc-details">
-        <div class="acc-bank-name">ธนาคารกสิกรไทย</div>
+        <div class="acc-bank-name">🏛️ ธนาคารกสิกรไทย</div>
         <div class="acc-number">048-3-38787-3</div>
         <div class="acc-owner">ธนาคารกสิกรไทย</div>
       </div>
@@ -458,7 +494,7 @@
     <!-- 3. TrueMoney Wallet -->
     <div class="account-card">
       <div class="acc-details">
-        <div class="acc-bank-name">TrueMoney Wallet</div>
+        <div class="acc-bank-name">📱 TrueMoney Wallet</div>
         <div class="acc-number">091-030-6243</div>
         <div class="acc-owner">ทรูมันนี่ วอลเล็ท</div>
       </div>
@@ -468,17 +504,20 @@
     </div>
 
     <!-- 4. กล่องคำอธิบาย Note Slip -->
-    <div class="note-card">note slip ก่อนโอน ❀ ྀི♡݁𓈒ׅ 
- 𓈒. ” ใช้บริการร้าน marryme “ 𐙚 ⊹
-⠀    ⠀⠀⠀֯⠀⠀⠀⠀⠀ ┊⠀⠀⠀ ּ  
-      𐅛♡𓂂༷ หากลืมโน้ต  ⠀⠀
-      รบกวนโอนใหม่ ยอด 0.1
+    <div class="note-card">
+note slip ก่อนโอน ❀ ྀི♡݁𓈒ׅ 
+
+      𓈒.        ” ใช้บริการร้าน marryme “ 𐙚 ⊹
+⠀             ⠀⠀⠀֯⠀⠀⠀⠀⠀ ┊⠀⠀⠀ ּ  ⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   𐅛 ⠀
+     ֯♡ 𓂂༷ ⠀ ִ          หากลืมโน้ต  ⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀รบกวนโอนใหม่ ยอด 0.1
     </div>
 
     <!-- 5. กล่องแยกข้อความโน้ตสลิป (กดคัดลอกได้ทันที) -->
     <div class="slip-text-card">
       <div>
-        <div class="slip-text-label">ข้อความสำหรับโน้ตสลิป</div>
+        <div class="slip-text-label">ข้อความสำหรับโน้ตสลิป 💌</div>
         <div class="slip-text-content">ใช้บริการร้าน marryme</div>
       </div>
       <button type="button" class="copy-btn" onclick="copyText('ใช้บริการร้าน marryme', 'คัดลอกข้อความโน้ตสลิปแล้วค่ะ ♡')">
@@ -488,7 +527,7 @@
 
     <!-- 6. Payment QR Code ตามยอดเงิน -->
     <div class="qr-card">
-      <div class="qr-title">Payment QR Code</div>
+      <div class="qr-title">💳 Payment QR Code</div>
       <div class="qr-sub">กรอกยอดเงินที่ต้องการชำระ (บาท)</div>
 
       <div class="amount-display-box">
@@ -519,7 +558,7 @@
     </div>
 
     <div style="text-align: center;">
-      <div class="footer-badge">how to pay marryme ♡</div>
+      <div class="footer-badge">🌸 how to pay marryme ♡</div>
     </div>
 
   </div>
